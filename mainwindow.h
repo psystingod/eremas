@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QMessageBox>
+#include <QAbstractItemView>
 
 namespace Ui {
 class MainWindow;

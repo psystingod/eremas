@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->tableViewDepartments->setModel(model);
         ui->tableViewDepartments->verticalHeader()->setVisible(false);
+        ui->tableViewDepartments->setShowGrid(true);
+
 
 
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
