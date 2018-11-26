@@ -26,6 +26,11 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->tableViewDepartments->verticalHeader()->setVisible(false);
         ui->tableViewDepartments->setShowGrid(true);
 
+        ui->tableViewDepartments->setContextMenuPolicy(Qt::CustomContextMenu);
+
+        connect(ui->tableViewDepartments, SIGNAL(customContextMenuRequested(const QPoint &)),
+                ui->tableViewDepartments, SLOT(ShowContextMenu(const QPoint &)));
+
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nombre"));
         ui->tableViewDepartments->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
