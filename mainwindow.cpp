@@ -26,8 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->tableViewDepartments->verticalHeader()->setVisible(false);
         ui->tableViewDepartments->setShowGrid(true);
 
-
-
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nombre"));
         ui->tableViewDepartments->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);

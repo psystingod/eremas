@@ -126,9 +126,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>580</x>
       <y>130</y>
-      <width>132</width>
+      <width>320</width>
       <height>26</height>
      </rect>
     </property>
@@ -139,10 +139,10 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Agregar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Add/Add_16x16.png</normaloff>:/icons/Add/Add_16x16.png</iconset>
        </property>
       </widget>
@@ -156,10 +156,10 @@
         <string>Editar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Editar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Edit/Edit_16x16.png</normaloff>:/icons/Edit/Edit_16x16.png</iconset>
        </property>
       </widget>
@@ -173,10 +173,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Eliminar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Delete/Delete_16x16.png</normaloff>:/icons/Delete/Delete_16x16.png</iconset>
        </property>
       </widget>
@@ -190,10 +190,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Guardar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Save/Save_16x16.png</normaloff>:/icons/Save/Save_16x16.png</iconset>
        </property>
       </widget>
@@ -246,9 +246,9 @@
    <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>580</x>
       <y>280</y>
-      <width>132</width>
+      <width>320</width>
       <height>26</height>
      </rect>
     </property>
@@ -259,10 +259,10 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Agregar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Add/Add_16x16.png</normaloff>:/icons/Add/Add_16x16.png</iconset>
        </property>
       </widget>
@@ -276,10 +276,10 @@
         <string>Editar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Editar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Edit/Edit_16x16.png</normaloff>:/icons/Edit/Edit_16x16.png</iconset>
        </property>
       </widget>
@@ -293,10 +293,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Eliminar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Delete/Delete_16x16.png</normaloff>:/icons/Delete/Delete_16x16.png</iconset>
        </property>
       </widget>
@@ -310,10 +310,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Guardar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Save/Save_16x16.png</normaloff>:/icons/Save/Save_16x16.png</iconset>
        </property>
       </widget>
@@ -366,9 +366,9 @@
    <widget class="QWidget" name="layoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>580</x>
       <y>430</y>
-      <width>132</width>
+      <width>320</width>
       <height>26</height>
      </rect>
     </property>
@@ -379,10 +379,10 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Agregar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Add/Add_16x16.png</normaloff>:/icons/Add/Add_16x16.png</iconset>
        </property>
       </widget>
@@ -396,10 +396,10 @@
         <string>Editar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Editar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Edit/Edit_16x16.png</normaloff>:/icons/Edit/Edit_16x16.png</iconset>
        </property>
       </widget>
@@ -413,10 +413,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Eliminar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Delete/Delete_16x16.png</normaloff>:/icons/Delete/Delete_16x16.png</iconset>
        </property>
       </widget>
@@ -430,10 +430,10 @@
         <string>Eliminar</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Guardar</string>
        </property>
        <property name="icon">
-        <iconset resource="icons.qrc">
+        <iconset>
          <normaloff>:/icons/Save/Save_16x16.png</normaloff>:/icons/Save/Save_16x16.png</iconset>
        </property>
       </widget>
@@ -462,8 +462,6 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
