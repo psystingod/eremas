@@ -178,6 +178,8 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
     ui->searchMunicipie->setEnabled(true);
     ui->btnEditMun->setDisabled(true);
     ui->btnDeleteMun->setDisabled(true);
+    ui->idMun->clear();
+    ui->nameMun->clear();
 
     ui->btnEditCol->setDisabled(true);
     ui->btnDeleteCol->setDisabled(true);
@@ -422,12 +424,20 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
 
 void MainWindow::on_btnAddCol_clicked()
 {
+    ui->nameCol->setEnabled(true);
+    ui->btnSaveCol->setEnabled(true);
+    if(ui->nameMun->text().isEmpty()){
+        QMessageBox msgBox;
+        msgBox.setText("Por favor, antes de continuar, seleccione un municipio");
+        msgBox.exec();
+        ui->nameCol->setDisabled(true);
+        ui->btnSaveCol->setDisabled(true);
+    }
+
     ui->btnEditCol->setDisabled(true);
     ui->btnDeleteCol->setDisabled(true);
-    ui->btnSaveCol->setEnabled(true);
 
     //ui->idCol->setEnabled(true);
-    ui->nameCol->setEnabled(true);
     ui->idCol->clear();
     ui->nameCol->clear();
     action3 = 1;

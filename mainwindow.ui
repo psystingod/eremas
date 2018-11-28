@@ -145,7 +145,7 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string>Agregar</string>
+        <string>Nuevo</string>
        </property>
        <property name="icon">
         <iconset>
@@ -265,7 +265,7 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string>Agregar</string>
+        <string>Nuevo</string>
        </property>
        <property name="icon">
         <iconset>
@@ -385,7 +385,7 @@
         <string>Nuevo</string>
        </property>
        <property name="text">
-        <string>Agregar</string>
+        <string>Nuevo</string>
        </property>
        <property name="icon">
         <iconset>
