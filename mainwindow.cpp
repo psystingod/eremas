@@ -180,7 +180,11 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
     ui->btnDeleteMun->setDisabled(true);
     ui->idMun->clear();
     ui->nameMun->clear();
-
+    //Reset colonias
+    ui->idCol->clear();
+    ui->nameCol->clear();
+    ui->nameCol->setDisabled(true);
+    modelCol->clear();
     ui->btnEditCol->setDisabled(true);
     ui->btnDeleteCol->setDisabled(true);
 
