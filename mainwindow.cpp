@@ -103,6 +103,8 @@ void MainWindow::on_btnDelete_clicked()
             db.close();
 
             ui->btnDelete->setDisabled(true);
+            ui->id->clear();
+            ui->name->clear();
             db.close();
         }
     }
@@ -173,6 +175,7 @@ void MainWindow::on_btnSave_clicked()
 
 void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
 {
+    ui->searchMunicipie->setEnabled(true);
     ui->btnEditMun->setDisabled(true);
     ui->btnDeleteMun->setDisabled(true);
 
@@ -200,7 +203,7 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
     }
 
     db.open();
-    qry.prepare("select * from municipies WHERE id=?");
+    qry.prepare("select idMunicipio, nombre from municipies WHERE id=?");
     qry.bindValue(0, ui->id->text().toInt());
     qry.exec();
 
@@ -217,10 +220,10 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
 
         modelMun->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         modelMun->setHeaderData(1, Qt::Horizontal, QObject::tr("Nombre"));
-        modelMun->setHeaderData(2, Qt::Horizontal, QObject::tr("Depto"));
+        //modelMun->setHeaderData(2, Qt::Horizontal, QObject::tr("Depto"));
         ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
         ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-        ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+        //ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
         db.close();
     }
 }
@@ -276,8 +279,8 @@ void MainWindow::on_btnDeleteMun_clicked()
 
             //Recharge table municipies
             db.open();
-            qry.prepare("select * from municipies WHERE id=?");
-            qry.bindValue(0, ui->id->text().toInt());
+            qry.prepare("select idMunicipio, nombre from municipies WHERE id=:id");
+            qry.bindValue(":id", ui->id->text().toInt());
             qry.exec();
 
             modelMun->setQuery(qry);
@@ -286,6 +289,8 @@ void MainWindow::on_btnDeleteMun_clicked()
 
             ui->btnDeleteMun->setDisabled(true);
             ui->btnEditMun->setDisabled(true);
+            ui->idMun->clear();
+            ui->nameMun->clear();
             db.close();
         }
     }
@@ -318,7 +323,8 @@ void MainWindow::on_btnSaveMun_clicked()
                 qry.exec();
 
                 //Recharge table municipies
-                qry.prepare("select * from municipies");
+                qry.prepare("select idMunicipio, nombre from municipies WHERE id = :id");
+                qry.bindValue(":id", ui->id->text().toInt());
                 qry.exec();
                 modelMun->setQuery(qry);
                 ui->tableViewMunicipie->setModel(modelMun);
@@ -331,7 +337,8 @@ void MainWindow::on_btnSaveMun_clicked()
                 qry.exec();
 
                 //Recharge table municipies
-                qry.prepare("select * from municipies");
+                qry.prepare("select idMunicipio, nombre from municipies WHERE id = :id");
+                qry.bindValue(":id", ui->id->text().toInt());
                 qry.exec();
                 modelMun->setQuery(qry);
                 ui->tableViewMunicipie->setModel(modelMun);
@@ -358,6 +365,7 @@ void MainWindow::on_btnSaveMun_clicked()
 
 void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
 {
+    ui->searchCol->setEnabled(true);
     ui->btnEdit->setDisabled(true);
     ui->btnDelete->setDisabled(true);
 
@@ -385,7 +393,7 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
     }
 
     db.open();
-    qry.prepare("select * from neighborhood WHERE idMunicipio=?");
+    qry.prepare("select idColonia, nombre from neighborhood WHERE idMunicipio=?");
     qry.bindValue(0, ui->idMun->text().toInt());
     qry.exec();
 
@@ -402,10 +410,10 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
 
         modelCol->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         modelCol->setHeaderData(1, Qt::Horizontal, QObject::tr("Nombre"));
-        modelCol->setHeaderData(2, Qt::Horizontal, QObject::tr("Mun"));
+        //modelCol->setHeaderData(2, Qt::Horizontal, QObject::tr("Mun"));
         ui->tableViewCol->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
         ui->tableViewCol->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
-        ui->tableViewCol->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+        //ui->tableViewCol->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
         db.close();
     }
 }
@@ -458,8 +466,8 @@ void MainWindow::on_btnDeleteCol_clicked()
 
             //Recharge table neighborhood
             db.open();
-            qry.prepare("select * from neighborhood WHERE idMunicipio=?");
-            qry.bindValue(0, ui->idMun->text().toInt());
+            qry.prepare("select idColonia, nombre from neighborhood WHERE idMunicipio=:idMunicipio");
+            qry.bindValue(":idMunicipio", ui->idMun->text().toInt());
             qry.exec();
 
             modelCol->setQuery(qry);
@@ -468,6 +476,8 @@ void MainWindow::on_btnDeleteCol_clicked()
 
             ui->btnDeleteCol->setDisabled(true);
             ui->btnEditCol->setDisabled(true);
+            ui->idCol->clear();
+            ui->nameCol->clear();
 
         }
     }
@@ -499,7 +509,8 @@ void MainWindow::on_btnSaveCol_clicked()
                 qry.exec();
 
                 //Recharge table neighborhood
-                qry.prepare("select * from neighborhood");
+                qry.prepare("select idColonia, nombre from neighborhood WHERE idMunicipio=:idMunicipio");
+                qry.bindValue(":idMunicipio", ui->idMun->text().toInt());
                 qry.exec();
                 modelCol->setQuery(qry);
                 ui->tableViewCol->setModel(modelCol);
@@ -512,7 +523,8 @@ void MainWindow::on_btnSaveCol_clicked()
                 qry.exec();
 
                 //Recharge table neighborhood
-                qry.prepare("select * from neighborhood");
+                qry.prepare("select idColonia, nombre from neighborhood WHERE idMunicipio=:idMunicipio");
+                qry.bindValue(":idMunicipio", ui->idMun->text().toInt());
                 qry.exec();
                 modelCol->setQuery(qry);
                 ui->tableViewCol->setModel(modelCol);
@@ -569,11 +581,42 @@ void MainWindow::on_tableViewCol_clicked(const QModelIndex &index)
 void MainWindow::on_searchDepartment_textChanged(const QString &arg1)
 {
     db.open();
-    qrySearch.prepare("SELECT * FROM departments WHERE nombre LIKE '"+arg1+"%'");
+    qrySearch.prepare("SELECT id, nombre FROM departments WHERE nombre LIKE '"+arg1+"%'");
     qrySearch.exec();
     qDebug() << arg1;
 
-    searchDepartment->setQuery(qrySearch);
-    ui->tableViewDepartments->setModel(searchDepartment);
+    model->setQuery(qrySearch);
+    db.close();
+    ui->tableViewDepartments->setModel(model);
 
+}
+
+void MainWindow::on_searchMunicipie_textChanged(const QString &arg1)
+{
+    db.open();
+    QString idepto = ui->id->text();
+    QString stmt = "SELECT idMunicipio, nombre FROM municipies WHERE id = '"+idepto+"'" + " AND nombre LIKE '"+arg1+"%'";
+    qDebug() << stmt;
+    qrySearch.prepare(stmt);
+    qrySearch.exec();
+    qDebug() << arg1;
+
+    modelMun->setQuery(qrySearch);
+    db.close();
+    ui->tableViewMunicipie->setModel(modelMun);
+}
+
+void MainWindow::on_searchCol_textChanged(const QString &arg1)
+{
+    db.open();
+    QString idMun = ui->idMun->text();
+    QString stmt = "SELECT idColonia, nombre FROM neighborhood WHERE idMunicipio = '"+idMun+"'" + " AND nombre LIKE '"+arg1+"%'";
+    qDebug() << stmt;
+    qrySearch.prepare(stmt);
+    qrySearch.exec();
+    qDebug() << arg1;
+
+    modelCol->setQuery(qrySearch);
+    db.close();
+    ui->tableViewCol->setModel(modelCol);
 }

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Localidades</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QGroupBox" name="groupBox">
@@ -90,6 +90,9 @@
      </item>
      <item row="0" column="3">
       <widget class="QLineEdit" name="searchMunicipie">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="placeholderText">
         <string>Municipio</string>
        </property>
@@ -110,6 +113,9 @@
      </item>
      <item row="2" column="1" colspan="3">
       <widget class="QLineEdit" name="searchCol">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string/>
        </property>
