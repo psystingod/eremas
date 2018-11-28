@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QAbstractItemView>
+#include <QRegularExpression>
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +24,7 @@ public:
     QSqlQueryModel *model = new QSqlQueryModel();
     QSqlQueryModel *modelMun = new QSqlQueryModel();
     QSqlQueryModel *modelCol = new QSqlQueryModel();
+    QSqlQueryModel *searchDepartment = new QSqlQueryModel();
     QSqlQuery qry;
     QSqlQuery qrySearch;
     QStringListModel *departmentsList = new QStringListModel();

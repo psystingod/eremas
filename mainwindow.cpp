@@ -568,12 +568,12 @@ void MainWindow::on_tableViewCol_clicked(const QModelIndex &index)
 
 void MainWindow::on_searchDepartment_textChanged(const QString &arg1)
 {
-    QRegExp regExp(arg1, Qt::CaseInsensitive);
     db.open();
-    qrySearch.prepare("select * from departments WHERE nombre LIKE %"+arg1);
+    qrySearch.prepare("SELECT * FROM departments WHERE nombre LIKE '"+arg1+"%'");
     qrySearch.exec();
     qDebug() << arg1;
 
-    model->setQuery(qrySearch);
-    ui->tableViewDepartments->setModel(model);
+    searchDepartment->setQuery(qrySearch);
+    ui->tableViewDepartments->setModel(searchDepartment);
+
 }
