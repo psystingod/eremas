@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     model->setQuery(qry);
 
+
     if(db.open()){
         //Set table departments
 
@@ -28,8 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->tableViewDepartments->setContextMenuPolicy(Qt::CustomContextMenu);
 
-        connect(ui->tableViewDepartments, SIGNAL(customContextMenuRequested(const QPoint &)),
-                ui->tableViewDepartments, SLOT(ShowContextMenu(const QPoint &)));
+        //connect(ui->tableViewDepartments, SIGNAL(customContextMenuRequested(const QPoint &)),
+                //ui->tableViewDepartments, SLOT(ShowContextMenu(const QPoint &)));
 
         model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
         model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nombre"));
@@ -563,4 +564,16 @@ void MainWindow::on_tableViewCol_clicked(const QModelIndex &index)
         db.close();
 
     }
+}
+
+void MainWindow::on_searchDepartment_textChanged(const QString &arg1)
+{
+    QRegExp regExp(arg1, Qt::CaseInsensitive);
+    db.open();
+    qrySearch.prepare("select * from departments WHERE nombre LIKE %"+arg1);
+    qrySearch.exec();
+    qDebug() << arg1;
+
+    model->setQuery(qrySearch);
+    ui->tableViewDepartments->setModel(model);
 }

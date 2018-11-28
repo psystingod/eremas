@@ -24,7 +24,8 @@ public:
     QSqlQueryModel *modelMun = new QSqlQueryModel();
     QSqlQueryModel *modelCol = new QSqlQueryModel();
     QSqlQuery qry;
-
+    QSqlQuery qrySearch;
+    QStringListModel *departmentsList = new QStringListModel();
 
 
 private slots:
@@ -57,6 +58,8 @@ private slots:
     void on_btnSaveCol_clicked();
 
     void on_tableViewCol_clicked(const QModelIndex &index);
+
+    void on_searchDepartment_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
