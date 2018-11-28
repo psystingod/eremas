@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2018 a las 05:31:03
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.10
+-- Tiempo de generación: 28-11-2018 a las 21:15:44
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,7 +41,10 @@ INSERT INTO `departments` (`id`, `nombre`) VALUES
 (1, 'Usulután'),
 (2, 'San Miguel'),
 (3, 'San Salvador'),
-(4, 'San Vicente');
+(4, 'San Vicente'),
+(5, 'Ahuachapán'),
+(6, 'La unión'),
+(7, 'La Libertad');
 
 -- --------------------------------------------------------
 
@@ -62,9 +65,10 @@ CREATE TABLE `municipies` (
 INSERT INTO `municipies` (`idMunicipio`, `nombre`, `id`) VALUES
 (1, 'Jiquilisco', 1),
 (4, 'Chinameca', 2),
-(5, 'Chirilagua', 2),
-(6, 'Ereguayquin', 1),
-(7, 'Santiago de María', 1);
+(9, 'Quelepa', 2),
+(17, 'San Jacinto', 3),
+(20, 'Nejapa', 3),
+(21, 'Santa Maria', 1);
 
 -- --------------------------------------------------------
 
@@ -83,9 +87,12 @@ CREATE TABLE `neighborhood` (
 --
 
 INSERT INTO `neighborhood` (`idColonia`, `nombre`, `idMunicipio`) VALUES
-(1, 'Barrio la mercerd', 1),
-(2, 'Colonia el cocal', 1),
-(3, 'San Isidro', 1);
+(1, 'Barrio la merced', 1),
+(2, 'Colonia el porvenir', 1),
+(3, 'San Isidro', 1),
+(5, 'Col Chinameca 1', 4),
+(11, 'B San Jose', 1),
+(12, 'Lot El Sol', 9);
 
 --
 -- Índices para tablas volcadas
@@ -119,19 +126,19 @@ ALTER TABLE `neighborhood`
 -- AUTO_INCREMENT de la tabla `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `municipies`
 --
 ALTER TABLE `municipies`
-  MODIFY `idMunicipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idMunicipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `neighborhood`
 --
 ALTER TABLE `neighborhood`
-  MODIFY `idColonia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idColonia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -141,13 +148,13 @@ ALTER TABLE `neighborhood`
 -- Filtros para la tabla `municipies`
 --
 ALTER TABLE `municipies`
-  ADD CONSTRAINT `municipies_ibfk_1` FOREIGN KEY (`id`) REFERENCES `departments` (`id`);
+  ADD CONSTRAINT `municipies_ibfk_1` FOREIGN KEY (`id`) REFERENCES `departments` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `neighborhood`
 --
 ALTER TABLE `neighborhood`
-  ADD CONSTRAINT `neighborhood_ibfk_1` FOREIGN KEY (`idMunicipio`) REFERENCES `municipies` (`idMunicipio`);
+  ADD CONSTRAINT `neighborhood_ibfk_1` FOREIGN KEY (`idMunicipio`) REFERENCES `municipies` (`idMunicipio`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

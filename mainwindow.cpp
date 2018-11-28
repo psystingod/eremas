@@ -299,6 +299,7 @@ void MainWindow::on_btnDeleteMun_clicked()
 
             modelMun->setQuery(qry);
             ui->tableViewMunicipie->setModel(modelMun);
+            modelCol->clear();
             db.close();
 
             ui->btnDeleteMun->setDisabled(true);
