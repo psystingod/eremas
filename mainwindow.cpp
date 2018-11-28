@@ -239,12 +239,20 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
 //Acciones para el botón agregar
 void MainWindow::on_btnAddMun_clicked()
 {
+    ui->nameMun->setEnabled(true);
+    ui->btnSaveMun->setEnabled(true);
+    if(ui->name->text().isEmpty()){
+        QMessageBox msgBox;
+        msgBox.setText("Por favor, antes de continuar, seleccione un departamento");
+        msgBox.exec();
+        ui->nameMun->setDisabled(true);
+        ui->btnSaveMun->setDisabled(true);
+    }
+
     ui->btnEditMun->setDisabled(true);
     ui->btnDeleteMun->setDisabled(true);
-    ui->btnSaveMun->setEnabled(true);
 
     //ui->idMun->setEnabled(true);
-    ui->nameMun->setEnabled(true);
     ui->idMun->clear();
     ui->nameMun->clear();
     action2 = 1;
