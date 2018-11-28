@@ -408,7 +408,6 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
     if(db.open()){
         //Set table neighborhood
 
-        QMessageBox::information(this, "Conection", "Accediendo a barrios y colonias de "+ui->nameMun->text());
 
         ui->tableViewCol->setModel(modelCol);
         ui->tableViewCol->verticalHeader()->setVisible(false);
@@ -420,6 +419,8 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
         ui->tableViewCol->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
         ui->tableViewCol->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         //ui->tableViewCol->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+
+        QMessageBox::information(this, "Conection", "Accediendo a barrios y colonias de "+ui->nameMun->text());
         db.close();
     }
 }
