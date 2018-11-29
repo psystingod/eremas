@@ -68,6 +68,7 @@ private slots:
 
     void on_searchCol_textChanged(const QString &arg1);
 
+
 private:
     Ui::MainWindow *ui;
 };

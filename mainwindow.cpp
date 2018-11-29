@@ -100,6 +100,7 @@ void MainWindow::on_btnDelete_clicked()
             qry.exec();
             model->setQuery(qry);
             ui->tableViewDepartments->setModel(model);
+            modelMun->clear();
             db.close();
 
             ui->btnDelete->setDisabled(true);
@@ -187,7 +188,6 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
     modelCol->clear();
     ui->btnEditCol->setDisabled(true);
     ui->btnDeleteCol->setDisabled(true);
-
     ui->btnEdit->setEnabled(true);
     QString valIndex = ui->tableViewDepartments->model()->data(index).toString();
     ui->btnDelete->setEnabled(true);
@@ -644,3 +644,4 @@ void MainWindow::on_searchCol_textChanged(const QString &arg1)
     db.close();
     ui->tableViewCol->setModel(modelCol);
 }
+
