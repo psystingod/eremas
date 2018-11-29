@@ -218,8 +218,6 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
     if(db.open()){
         //Set table municipies
 
-        QMessageBox::information(this, "Conection", "Accediendo a los municipios del departamento de "+ui->name->text());
-
         ui->tableViewMunicipie->setModel(modelMun);
         ui->tableViewMunicipie->verticalHeader()->setVisible(false);
 
@@ -230,6 +228,7 @@ void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
         ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
         ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         //ui->tableViewMunicipie->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
+        QMessageBox::information(this, "Notificación", "Ahora puede ver los municipios del departamento de "+ui->name->text());
         db.close();
     }
 }
@@ -429,7 +428,7 @@ void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
         ui->tableViewCol->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
         //ui->tableViewCol->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
 
-        QMessageBox::information(this, "Conection", "Accediendo a barrios y colonias de "+ui->nameMun->text());
+        QMessageBox::information(this, "Notificación", "Ahora puede ver los barrios y colonias de "+ui->nameMun->text());
         db.close();
     }
 }
