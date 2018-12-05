@@ -26,14 +26,19 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    new.cpp \
+    proveedores.cpp
 
 HEADERS += \
         mainwindow.h \
-    actions.h
+    new.h \
+    proveedores.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    new.ui \
+    proveedores.ui
 
 RESOURCES =
 
