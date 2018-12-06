@@ -18,6 +18,7 @@ class Proveedores : public QWidget
 public:
     explicit Proveedores(QWidget *parent = nullptr);
     ~Proveedores();
+
     // Setting variables
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     QSqlQueryModel *modelProviders = new QSqlQueryModel();
@@ -25,6 +26,10 @@ public:
 
 private slots:
     void on_btn_new_clicked();
+
+    void on_btn_edit_clicked();
+
+    void on_btn_see_clicked();
 
 private:
     Ui::Proveedores *ui;

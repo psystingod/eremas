@@ -56,3 +56,16 @@ void Proveedores::on_btn_new_clicked()
     n->show();
 
 }
+
+void Proveedores::on_btn_edit_clicked()
+{
+
+}
+
+void Proveedores::on_btn_see_clicked()
+{
+    New *a = new New;
+    a->setAction(3);
+    a->setAttribute(Qt::WA_DeleteOnClose);
+    a->show();
+}
