@@ -29,10 +29,26 @@ public:
         {
             return this->action;
         }
+
+    // Getters and setters for index value of tableViewProviders
+
+    QString index_value = "";
+
+    void setIndex(QString index_value)
+        {
+            this->index_value = index_value;
+        }
+
+    QString getIndex()
+        {
+            return this->index_value;
+        }
+
     //Declarando las variables a usar por el formulario new
-    //QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     //QSqlQueryModel *modelProviders = new QSqlQueryModel();
-    //QSqlQuery query;
+    //
+    QSqlQuery query2;
    //QSqlQuery querySearch;
 
 private slots:

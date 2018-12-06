@@ -74,6 +74,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="btn_edit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>830</x>
@@ -87,6 +90,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="btn_see">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>830</x>
