@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QtSql>
 #include <QSqlDatabase>
+#include "proveedores.h"
 
 namespace Ui {
 class New;
@@ -51,6 +52,7 @@ public:
     QSqlQuery query2;
    //QSqlQuery querySearch;
 
+
 private slots:
     void on_btn_cancel_clicked();
 
@@ -61,3 +63,4 @@ private:
 };
 
 #endif // NEW_H
+

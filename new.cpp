@@ -2,12 +2,12 @@
 #include "ui_new.h"
 #include "proveedores.h"
 
-
 New::New(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::New)
 {
     ui->setupUi(this);
+
     db.setHostName("localhost");
     db.setDatabaseName("cablesat");
     db.setUserName("root");
@@ -16,6 +16,7 @@ New::New(QWidget *parent) :
     // Setting data from index to fields
     if(db.open()){
         QSqlQuery query2;
+        qDebug()<< "Desde ventana new " + getIndex();
         QString statement = "select * from providers where id_proveedor = '"+ getIndex() +"' or nombre = '"+ getIndex() +"' or giro = '"+ getIndex() +"' or nacionalidad = '"+ getIndex() +"' or telefono = '"+ getIndex() +"'";
         query2.prepare(statement);
         query2.exec();
@@ -65,3 +66,4 @@ void New::on_btn_save_clicked()
             qDebug()<< getIndex();
     }
 }
+

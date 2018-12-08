@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>920</width>
-    <height>525</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>806</x>
      <y>20</y>
      <width>20</width>
-     <height>481</height>
+     <height>521</height>
     </rect>
    </property>
    <property name="orientation">
@@ -56,7 +56,7 @@
      <x>20</x>
      <y>80</y>
      <width>781</width>
-     <height>421</height>
+     <height>221</height>
     </rect>
    </property>
   </widget>
@@ -64,7 +64,7 @@
    <property name="geometry">
     <rect>
      <x>830</x>
-     <y>80</y>
+     <y>410</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -80,7 +80,7 @@
    <property name="geometry">
     <rect>
      <x>830</x>
-     <y>140</y>
+     <y>460</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -89,38 +89,306 @@
     <string>Editar</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_see">
+  <widget class="QLabel" name="idLabel">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>320</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*ID:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="idLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>320</y>
+     <width>291</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nombreDelProveedorLabel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>320</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Nombre del proveedor:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nombreDelProveedorLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>467</x>
+     <y>320</y>
+     <width>332</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nitLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>360</y>
+     <width>291</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nitLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>360</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*NIT:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nrcLabel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>360</y>
+     <width>25</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*NRC:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nrcLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>467</x>
+     <y>360</y>
+     <width>332</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="direccionLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>400</y>
+     <width>691</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="direccionLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Direccion:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="giroLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Giro:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="giroLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>440</y>
+     <width>281</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nacionalidadLabel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>440</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Nacionalidad:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nacionalidadLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>467</x>
+     <y>440</y>
+     <width>332</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="telefonoLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>480</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="telefonoLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>480</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Teléfono:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="correoElectronicoLabel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>480</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Correo electrónico:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="correoElectronicoLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>467</x>
+     <y>480</y>
+     <width>332</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="vendedorLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>520</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="vendedorLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>520</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Vendedor:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cuentaEnElCatalogoLineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>520</y>
+     <width>331</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cuentaEnElCatalogoLabel">
+   <property name="geometry">
+    <rect>
+     <x>348</x>
+     <y>520</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>*Cuenta en el catálogo:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_save">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
      <x>830</x>
-     <y>200</y>
+     <y>510</y>
      <width>75</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>Ver</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>840</x>
-     <y>30</y>
-     <width>61</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Opciones</string>
+    <string>Guardar</string>
    </property>
   </widget>
  </widget>

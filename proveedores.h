@@ -21,8 +21,10 @@ public:
 
     // Setting variable for get index of tableViewProviders
     QString index_value = "";
+    int action = 0;
     // Setting variables
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+
     QSqlQueryModel *modelProviders = new QSqlQueryModel();
     QSqlQuery query;
 
@@ -31,12 +33,13 @@ private slots:
 
     void on_btn_edit_clicked();
 
-    void on_btn_see_clicked();
-
     void on_tableViewProviders_clicked(const QModelIndex &index);
+
+    void on_btn_save_clicked();
 
 private:
     Ui::Proveedores *ui;
 };
 
 #endif // PROVEEDORES_H
+

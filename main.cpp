@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "proveedores.h"
-#include "new.h"
 #include <QApplication>
 #include <QAbstractItemView>
 
