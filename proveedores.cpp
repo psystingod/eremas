@@ -231,7 +231,22 @@ void Proveedores::on_btn_save_clicked()
     }
 
     else{
+        ui->idLineEdit->setDisabled(true);
+        ui->nitLineEdit->setDisabled(true);
+        ui->nrcLineEdit->setDisabled(true);
+        ui->nombreDelProveedorLineEdit->setDisabled(true);
+        ui->direccionLineEdit->setDisabled(true);
+        ui->giroLineEdit->setDisabled(true);
+        ui->nacionalidadLineEdit->setDisabled(true);
+        ui->telefonoLineEdit->setDisabled(true);
+        ui->correoElectronicoLineEdit->setDisabled(true);
+        ui->vendedorLineEdit->setDisabled(true);
+        ui->cuentaEnElCatalogoLineEdit->setDisabled(true);
 
+        //Setting disabled buttons
+        ui->btn_edit->setDisabled(true);
+        ui->btn_save->setDisabled(true);
+        ui->btn_new->setEnabled(true);
     }
 
 }

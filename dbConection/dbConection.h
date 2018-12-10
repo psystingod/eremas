@@ -6,6 +6,8 @@
 #include <QSqlDatabase>
 #include <QtDebug>
 
+#include "common/settings.h"
+
 class dbConection {
 public:
     dbConection();
