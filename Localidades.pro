@@ -28,7 +28,8 @@ SOURCES += \
         mainwindow.cpp \
     new.cpp \
     proveedores.cpp \
-    dbConection/dbConection.cpp
+    dbConection/dbConection.cpp \
+    common/settings.cpp
 
 HEADERS += \
         mainwindow.h \

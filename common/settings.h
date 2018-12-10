@@ -5,8 +5,17 @@ class Settings{
 public:
     Settings();
 
-    void setDatabasename( const QString& );
+    void setHostName( const QString& );
+    QString getHostName();
+
+    void setDatabaseName( const QString& );
     QString getDatabaseName();
+
+    void setUserName( const QString& );
+    QString getUserName();
+
+    void setPassword( const QString& );
+    QString getPassword();
 };
 
 #endif // SETTINGS_H
