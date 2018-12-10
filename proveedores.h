@@ -27,6 +27,7 @@ public:
 
     QSqlQueryModel *modelProviders = new QSqlQueryModel();
     QSqlQuery query;
+    QSqlQuery searchQuery;
 
 private slots:
     void on_btn_new_clicked();
@@ -36,6 +37,8 @@ private slots:
     void on_tableViewProviders_clicked(const QModelIndex &index);
 
     void on_btn_save_clicked();
+
+    void on_lineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::Proveedores *ui;

@@ -3,7 +3,6 @@
 # Project created by QtCreator 2018-11-23T11:49:06
 #
 #-------------------------------------------------
-
 QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -28,12 +27,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     new.cpp \
-    proveedores.cpp
+    proveedores.cpp \
+    dbConection/dbConection.cpp
 
 HEADERS += \
         mainwindow.h \
     new.h \
-    proveedores.h
+    proveedores.h \
+    dbConection/dbConection.h \
+    common/settings.h
 
 FORMS += \
         mainwindow.ui \

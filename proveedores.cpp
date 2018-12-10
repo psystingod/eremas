@@ -188,7 +188,7 @@ void Proveedores::on_btn_save_clicked()
                 db.close();
                 break;
             case 2:
-                query.prepare("UPDATE providers SET nombre=:nombre, nit=:nit, nrc=:nrc, direccion=:direccion, giro=:giro, nacionalidad=:nacionalidad, telefono=:telefono, correo_electronico=:correro_electronico, representante=:representante, cuenta_catalogo=:cuenta_catalogo  WHERE id_proveedor=:id_proveedor");
+                query.prepare("UPDATE providers SET nombre=:nombre, nit=:nit, nrc=:nrc, direccion=:direccion, giro=:giro, nacionalidad=:nacionalidad, telefono=:telefono, correo_electronico=:correo_electronico, representante=:representante, cuenta_catalogo=:cuenta_catalogo  WHERE id_proveedor=:id_proveedor");
                 query.bindValue(":nombre", nombre);
                 query.bindValue(":nit", nit);
                 query.bindValue(":nrc", nrc);
@@ -202,7 +202,6 @@ void Proveedores::on_btn_save_clicked()
                 query.bindValue(":id_proveedor", id);
                 query.exec();
 
-                //Recharge table municipies
                 //Recharge table providers
                 query.prepare("select id_proveedor, nombre, giro, nacionalidad, telefono from providers");
                 query.exec();
@@ -246,7 +245,6 @@ void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
     // Setting data into form
     if(db.open()){
         QSqlQuery query2;
-        qDebug()<< "Haciendo clic se ve ";
         //QString statement = "select * from providers where id_proveedor = '"+ index_value +"' or nombre = '"+ index_value +"' or giro = '"+ index_value +"' or nacionalidad = '"+ index_value +"' or telefono = '"+ index_value +"'";
         QString statement = "select * from providers where id_proveedor = '"+ index_value +"' or nombre = '"+ index_value +"'";
         query2.prepare(statement);
@@ -272,4 +270,16 @@ void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
     }
 
 
+}
+
+void Proveedores::on_lineEdit_textChanged(const QString &arg1)
+{
+    db.open();
+    searchQuery.prepare("SELECT id_proveedor, nombre, giro, nacionalidad, telefono from providers WHERE id_proveedor LIKE '"+arg1+"%' or nombre LIKE '"+arg1+"%' or giro LIKE '"+arg1+"%' or nacionalidad LIKE '"+arg1+"%'");
+    searchQuery.exec();
+    qDebug() << arg1;
+
+    modelProviders->setQuery(searchQuery);
+    db.close();
+    ui->tableViewProviders->setModel(modelProviders);
 }
