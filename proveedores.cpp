@@ -198,7 +198,7 @@ void Proveedores::on_btn_save_clicked()
                     ui->cuentaEnElCatalogoLineEdit->setEnabled(true);
                 } else if(ni.length() < 17){
                     QMessageBox verifyNit;
-                    verifyNit.setText(tr("Por favor verifique que el NIT o el NRC cumplan con el formato establecido, respetando guines"));
+                    verifyNit.setText(tr("Por favor verifique que el NIT o el NRC cumplan con el formato establecido, respetando guiones"));
                     verifyNit.exec();
 
                     //Setting enabled all the form
