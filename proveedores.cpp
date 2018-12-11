@@ -108,6 +108,7 @@ void Proveedores::on_btn_edit_clicked()
     //Setting action = 2 = UPDATE
     action = 2;
     ui->btn_new->setDisabled(true);
+    ui->btn_save->setEnabled(true);
 
     //Setting enabled all the form
     ui->idLineEdit->setEnabled(false);
@@ -315,8 +316,21 @@ void Proveedores::on_btn_save_clicked()
 void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
 {
     index_value = ui->tableViewProviders->model()->data(index).toString();
-    ui->btn_save->setEnabled(true);
+    ui->btn_save->setDisabled(true);
     ui->btn_edit->setEnabled(true);
+
+    ui->idLineEdit->setDisabled(true);
+    ui->nitLineEdit->setDisabled(true);
+    ui->nrcLineEdit->setDisabled(true);
+    ui->nombreDelProveedorLineEdit->setDisabled(true);
+    ui->direccionLineEdit->setDisabled(true);
+    ui->giroLineEdit->setDisabled(true);
+    ui->categoriaLineEdit->setDisabled(true);
+    ui->nacionalidadLineEdit->setDisabled(true);
+    ui->telefonoLineEdit->setDisabled(true);
+    ui->correoElectronicoLineEdit->setDisabled(true);
+    ui->vendedorLineEdit->setDisabled(true);
+    ui->cuentaEnElCatalogoLineEdit->setDisabled(true);
 
     // Setting data into form
     if(db.open()){
