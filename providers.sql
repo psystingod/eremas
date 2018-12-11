@@ -7,6 +7,10 @@
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
+DROP DATABASE IF EXISTS cablesat;
+CREATE DATABASE cablesat;
+USE cablesat;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -35,6 +39,7 @@ CREATE TABLE `providers` (
   `nrc` varchar(10) NOT NULL,
   `direccion` varchar(45) NOT NULL,
   `giro` varchar(45) NOT NULL,
+  `categoria` varchar(45) NOT NULL,
   `nacionalidad` varchar(20) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `correo_electronico` varchar(45) NOT NULL,
@@ -46,12 +51,12 @@ CREATE TABLE `providers` (
 -- Volcado de datos para la tabla `providers`
 --
 
-INSERT INTO `providers` (`id_proveedor`, `nombre`, `nit`, `nrc`, `direccion`, `giro`, `nacionalidad`, `telefono`, `correo_electronico`, `representante`, `cuenta_catalogo`) VALUES
-(6, 'Proveedora PC visión', '452139-78', '2001147', 'Colonia la cruz, Usulután, El Salvador', 'Tecnología', 'Nicaraguence', '7022-1905', 'proveedora@correo.com', 'Juan Martínez,  7896-6415', '1102'),
-(7, 'Telmex S.A de C.V', '14896321-200', '896200', 'México CA', 'Artículos de limpieza', 'Mexicano', '7841-3362', 'eremas@hotmail.com', 'Manuel Menjivar, 2624-5611', '3322'),
-(8, 'AT&T', '1800254-00', '00456-00', 'Washington D.C, Estados Unidos', 'Telecomunicaciones', 'Estadounidense', '1800-400-02', 'ahorasi@gmail.com', 'Diego Herrera 7022-1905', '1120'),
-(9, 'Cable Visión Usulután', '10025862-2200', '879000', 'Barrio la Merced, Usulután', 'Telecomunicaciones', 'Salvadoreña', '2624-8300', 'cablesat@gmail.com', 'Diego Herrera 7022-1905', '3300'),
-(10, 'Microsoft', '789566-001', '8955000', 'Palo alto california, Estados Unidos', 'Tecnología', 'Estadounidense', '1900-445-05', 'microsoft@billgates.com', 'Bill Gates 899-000', '7711');
+INSERT INTO `providers` (`id_proveedor`, `nombre`, `nit`, `nrc`, `direccion`, `giro`, `categoria`, `nacionalidad`, `telefono`, `correo_electronico`, `representante`, `cuenta_catalogo`) VALUES
+(1, 'Proveedora PC visión', '452139-78', '2001147', 'Colonia la cruz, Usulután, El Salvador', 'Tecnología', 'Monitores para PC', 'Nicaraguence', '7022-1905', 'proveedora@correo.com', 'Juan Martínez,  7896-6415', '1102'),
+(2, 'Telmex S.A de C.V', '14896321-200', '896200', 'México CA', 'Artículos de limpieza', 'Artículos para limpiar ventanas', 'Mexicano', '7841-3362', 'eremas@hotmail.com', 'Manuel Menjivar, 2624-5611', '3322'),
+(3, 'AT&T', '1800254-00', '00456-00', 'Washington D.C, Estados Unidos', 'Telecomunicaciones', 'Cables para modems', 'Estadounidense', '1800-400-02', 'ahorasi@gmail.com', 'Diego Herrera 7022-1905', '1120'),
+(4, 'Cable Visión Usulután', '10025862-2200', '879000', 'Barrio la Merced, Usulután', 'Telecomunicaciones', 'Antenas de recepción de señal', 'Salvadoreña', '2624-8300', 'cablesat@gmail.com', 'Diego Herrera 7022-1905', '3300'),
+(5, 'Microsoft', '789566-001', '8955000', 'Palo alto california, Estados Unidos', 'Tecnología', 'Servidores', 'Estadounidense', '1900-445-05', 'microsoft@billgates.com', 'Bill Gates 899-000', '7711');
 
 --
 -- Índices para tablas volcadas
@@ -71,7 +76,7 @@ ALTER TABLE `providers`
 -- AUTO_INCREMENT de la tabla `providers`
 --
 ALTER TABLE `providers`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -16,7 +16,7 @@ Proveedores::Proveedores(QWidget *parent) :
 
     db.open();
 
-    query.prepare("select id_proveedor, nombre, giro, nacionalidad, telefono from providers");
+    query.prepare("select id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers");
     query.exec();
 
     modelProviders->setQuery(query);
@@ -31,8 +31,9 @@ Proveedores::Proveedores(QWidget *parent) :
         modelProviders->setHeaderData(0, Qt::Horizontal, QObject::tr("CODIGO"));
         modelProviders->setHeaderData(1, Qt::Horizontal, QObject::tr("NOMBRE"));
         modelProviders->setHeaderData(2, Qt::Horizontal, QObject::tr("GIRO"));
-        modelProviders->setHeaderData(3, Qt::Horizontal, QObject::tr("NACIONALIDAD"));
-        modelProviders->setHeaderData(4, Qt::Horizontal, QObject::tr("TELEFONO"));
+        modelProviders->setHeaderData(3, Qt::Horizontal, QObject::tr("CATEGORIA"));
+        modelProviders->setHeaderData(4, Qt::Horizontal, QObject::tr("NACIONALIDAD"));
+        modelProviders->setHeaderData(5, Qt::Horizontal, QObject::tr("TELEFONO"));
 
         ui->tableViewProviders->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tableViewProviders->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -41,6 +42,7 @@ Proveedores::Proveedores(QWidget *parent) :
         ui->tableViewProviders->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
         ui->tableViewProviders->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
         ui->tableViewProviders->horizontalHeader()->setSectionResizeMode(4, QHeaderView::Stretch);
+        ui->tableViewProviders->horizontalHeader()->setSectionResizeMode(5, QHeaderView::Stretch);
 
 
         /*modelProviders->setHeaderData(0, Qt::Horizontal, QObject::tr("Código"));
@@ -76,6 +78,7 @@ void Proveedores::on_btn_new_clicked()
     ui->nombreDelProveedorLineEdit->setEnabled(true);
     ui->direccionLineEdit->setEnabled(true);
     ui->giroLineEdit->setEnabled(true);
+    ui->categoriaLineEdit->setEnabled(true);
     ui->nacionalidadLineEdit->setEnabled(true);
     ui->telefonoLineEdit->setEnabled(true);
     ui->correoElectronicoLineEdit->setEnabled(true);
@@ -89,6 +92,7 @@ void Proveedores::on_btn_new_clicked()
     ui->nombreDelProveedorLineEdit->clear();
     ui->direccionLineEdit->clear();
     ui->giroLineEdit->clear();
+    ui->categoriaLineEdit->clear();
     ui->nacionalidadLineEdit->clear();
     ui->telefonoLineEdit->clear();
     ui->correoElectronicoLineEdit->clear();
@@ -112,6 +116,7 @@ void Proveedores::on_btn_edit_clicked()
     ui->nombreDelProveedorLineEdit->setEnabled(true);
     ui->direccionLineEdit->setEnabled(true);
     ui->giroLineEdit->setEnabled(true);
+    ui->categoriaLineEdit->setEnabled(true);
     ui->nacionalidadLineEdit->setEnabled(true);
     ui->telefonoLineEdit->setEnabled(true);
     ui->correoElectronicoLineEdit->setEnabled(true);
@@ -129,6 +134,7 @@ void Proveedores::on_btn_save_clicked()
     QString nrc = ui->nrcLineEdit->text();
     QString direccion = ui->direccionLineEdit->text();
     QString giro = ui->giroLineEdit->text();
+    QString categoria = ui->categoriaLineEdit->text();
     QString nacionalidad = ui->nacionalidadLineEdit->text();
     QString telefono = ui->telefonoLineEdit->text();
     QString correo_electronico = ui->correoElectronicoLineEdit->text();
@@ -148,13 +154,14 @@ void Proveedores::on_btn_save_clicked()
         if(db.open()){
             switch (action) {
             case 1: {
-                query.prepare("INSERT INTO providers(nombre, nit, nrc, direccion, giro, nacionalidad, telefono, correo_electronico, representante, cuenta_catalogo) "
-                              "VALUES(:nombre, :nit, :nrc, :direccion, :giro, :nacionalidad, :telefono, :correo_electronico, :representante, :cuenta_catalogo)");
+                query.prepare("INSERT INTO providers(nombre, nit, nrc, direccion, giro, categoria, nacionalidad, telefono, correo_electronico, representante, cuenta_catalogo) "
+                              "VALUES(:nombre, :nit, :nrc, :direccion, :giro, :categoria, :nacionalidad, :telefono, :correo_electronico, :representante, :cuenta_catalogo)");
                 query.bindValue(":nombre", nombre);
                 query.bindValue(":nit", nit);
                 query.bindValue(":nrc", nrc);
                 query.bindValue(":direccion", direccion);
                 query.bindValue(":giro", giro);
+                query.bindValue(":categoria", categoria);
                 query.bindValue(":nacionalidad", nacionalidad);
                 query.bindValue(":telefono", telefono);
                 query.bindValue(":correo_electronico", correo_electronico);
@@ -166,34 +173,86 @@ void Proveedores::on_btn_save_clicked()
                 QString nr = ui->nrcLineEdit->text();
                 QString dir = ui->direccionLineEdit->text();
                 QString gir = ui->giroLineEdit->text();
+                QString cat = ui->categoriaLineEdit->text();
                 QString nac = ui->nacionalidadLineEdit->text();
                 QString tel = ui->telefonoLineEdit->text();
                 QString cue = ui->cuentaEnElCatalogoLineEdit->text();
 
-                if(nom.isEmpty() or ni.isEmpty() or nr.isEmpty() or dir.isEmpty() or gir.isEmpty() or nac.isEmpty() or tel.isEmpty() or cue.isEmpty()){
+                if(nom.isEmpty() or ni.isEmpty() or nr.isEmpty() or dir.isEmpty() or gir.isEmpty() or cat.isEmpty() or nac.isEmpty() or tel.isEmpty() or cue.isEmpty()){
                     QMessageBox verify;
                     verify.setText(tr("Por favor asegurese de llenar todos los campos obligatorios"));
                     verify.exec();
+
+                    //Setting enabled all the form
+                    ui->idLineEdit->setEnabled(false);
+                    ui->nitLineEdit->setEnabled(true);
+                    ui->nrcLineEdit->setEnabled(true);
+                    ui->nombreDelProveedorLineEdit->setEnabled(true);
+                    ui->direccionLineEdit->setEnabled(true);
+                    ui->giroLineEdit->setEnabled(true);
+                    ui->categoriaLineEdit->setEnabled(true);
+                    ui->nacionalidadLineEdit->setEnabled(true);
+                    ui->telefonoLineEdit->setEnabled(true);
+                    ui->correoElectronicoLineEdit->setEnabled(true);
+                    ui->vendedorLineEdit->setEnabled(true);
+                    ui->cuentaEnElCatalogoLineEdit->setEnabled(true);
+                } else if(ni.length() < 17){
+                    QMessageBox verifyNit;
+                    verifyNit.setText(tr("Por favor verifique que el NIT o el NRC cumplan con el formato establecido, respetando guines"));
+                    verifyNit.exec();
+
+                    //Setting enabled all the form
+                    ui->idLineEdit->setEnabled(false);
+                    ui->nitLineEdit->setEnabled(true);
+                    ui->nrcLineEdit->setEnabled(true);
+                    ui->nombreDelProveedorLineEdit->setEnabled(true);
+                    ui->direccionLineEdit->setEnabled(true);
+                    ui->giroLineEdit->setEnabled(true);
+                    ui->categoriaLineEdit->setEnabled(true);
+                    ui->nacionalidadLineEdit->setEnabled(true);
+                    ui->telefonoLineEdit->setEnabled(true);
+                    ui->correoElectronicoLineEdit->setEnabled(true);
+                    ui->vendedorLineEdit->setEnabled(true);
+                    ui->cuentaEnElCatalogoLineEdit->setEnabled(true);
                 }
                 else {
                     query.exec();
+                    //Setting disabled all the form
+                    ui->idLineEdit->setDisabled(true);
+                    ui->nitLineEdit->setDisabled(true);
+                    ui->nrcLineEdit->setDisabled(true);
+                    ui->nombreDelProveedorLineEdit->setDisabled(true);
+                    ui->direccionLineEdit->setDisabled(true);
+                    ui->giroLineEdit->setDisabled(true);
+                    ui->categoriaLineEdit->setDisabled(true);
+                    ui->nacionalidadLineEdit->setDisabled(true);
+                    ui->telefonoLineEdit->setDisabled(true);
+                    ui->correoElectronicoLineEdit->setDisabled(true);
+                    ui->vendedorLineEdit->setDisabled(true);
+                    ui->cuentaEnElCatalogoLineEdit->setDisabled(true);
+
+                    //Setting disabled buttons
+                    ui->btn_edit->setDisabled(true);
+                    ui->btn_save->setDisabled(true);
+                    ui->btn_new->setEnabled(true);
                 }
             }
 
                 //Recharge table providers
-                query.prepare("select id_proveedor, nombre, giro, nacionalidad, telefono from providers");
+                query.prepare("select id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers");
                 query.exec();
                 modelProviders->setQuery(query);
                 ui->tableViewProviders->setModel(modelProviders);
                 db.close();
                 break;
             case 2:
-                query.prepare("UPDATE providers SET nombre=:nombre, nit=:nit, nrc=:nrc, direccion=:direccion, giro=:giro, nacionalidad=:nacionalidad, telefono=:telefono, correo_electronico=:correo_electronico, representante=:representante, cuenta_catalogo=:cuenta_catalogo  WHERE id_proveedor=:id_proveedor");
+                query.prepare("UPDATE providers SET nombre=:nombre, nit=:nit, nrc=:nrc, direccion=:direccion, giro=:giro, categoria=:categoria, nacionalidad=:nacionalidad, telefono=:telefono, correo_electronico=:correo_electronico, representante=:representante, cuenta_catalogo=:cuenta_catalogo  WHERE id_proveedor=:id_proveedor");
                 query.bindValue(":nombre", nombre);
                 query.bindValue(":nit", nit);
                 query.bindValue(":nrc", nrc);
                 query.bindValue(":direccion", direccion);
                 query.bindValue(":giro", giro);
+                query.bindValue(":categoria", categoria);
                 query.bindValue(":nacionalidad", nacionalidad);
                 query.bindValue(":telefono", telefono);
                 query.bindValue(":correo_electronico", correo_electronico);
@@ -203,31 +262,32 @@ void Proveedores::on_btn_save_clicked()
                 query.exec();
 
                 //Recharge table providers
-                query.prepare("select id_proveedor, nombre, giro, nacionalidad, telefono from providers");
+                query.prepare("select id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers");
                 query.exec();
                 modelProviders->setQuery(query);
                 ui->tableViewProviders->setModel(modelProviders);
                 db.close();
+                //Setting disabled all the form
+                ui->idLineEdit->setDisabled(true);
+                ui->nitLineEdit->setDisabled(true);
+                ui->nrcLineEdit->setDisabled(true);
+                ui->nombreDelProveedorLineEdit->setDisabled(true);
+                ui->direccionLineEdit->setDisabled(true);
+                ui->giroLineEdit->setDisabled(true);
+                ui->categoriaLineEdit->setDisabled(true);
+                ui->nacionalidadLineEdit->setDisabled(true);
+                ui->telefonoLineEdit->setDisabled(true);
+                ui->correoElectronicoLineEdit->setDisabled(true);
+                ui->vendedorLineEdit->setDisabled(true);
+                ui->cuentaEnElCatalogoLineEdit->setDisabled(true);
+
+                //Setting disabled buttons
+                ui->btn_edit->setDisabled(true);
+                ui->btn_save->setDisabled(true);
+                ui->btn_new->setEnabled(true);
                 break;
             }
         }
-        //Setting disabled all the form
-        ui->idLineEdit->setDisabled(true);
-        ui->nitLineEdit->setDisabled(true);
-        ui->nrcLineEdit->setDisabled(true);
-        ui->nombreDelProveedorLineEdit->setDisabled(true);
-        ui->direccionLineEdit->setDisabled(true);
-        ui->giroLineEdit->setDisabled(true);
-        ui->nacionalidadLineEdit->setDisabled(true);
-        ui->telefonoLineEdit->setDisabled(true);
-        ui->correoElectronicoLineEdit->setDisabled(true);
-        ui->vendedorLineEdit->setDisabled(true);
-        ui->cuentaEnElCatalogoLineEdit->setDisabled(true);
-
-        //Setting disabled buttons
-        ui->btn_edit->setDisabled(true);
-        ui->btn_save->setDisabled(true);
-        ui->btn_new->setEnabled(true);
     }
 
     else{
@@ -237,6 +297,7 @@ void Proveedores::on_btn_save_clicked()
         ui->nombreDelProveedorLineEdit->setDisabled(true);
         ui->direccionLineEdit->setDisabled(true);
         ui->giroLineEdit->setDisabled(true);
+        ui->categoriaLineEdit->setDisabled(true);
         ui->nacionalidadLineEdit->setDisabled(true);
         ui->telefonoLineEdit->setDisabled(true);
         ui->correoElectronicoLineEdit->setDisabled(true);
@@ -273,11 +334,12 @@ void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
             ui->nrcLineEdit->setText(query2.value(3).toString());
             ui->direccionLineEdit->setText(query2.value(4).toString());
             ui->giroLineEdit->setText(query2.value(5).toString());
-            ui->nacionalidadLineEdit->setText(query2.value(6).toString());
-            ui->telefonoLineEdit->setText(query2.value(7).toString());
-            ui->correoElectronicoLineEdit->setText(query2.value(8).toString());
-            ui->vendedorLineEdit->setText(query2.value(9).toString());
-            ui->cuentaEnElCatalogoLineEdit->setText(query2.value(10).toString());
+            ui->categoriaLineEdit->setText(query2.value(6).toString());
+            ui->nacionalidadLineEdit->setText(query2.value(7).toString());
+            ui->telefonoLineEdit->setText(query2.value(8).toString());
+            ui->correoElectronicoLineEdit->setText(query2.value(9).toString());
+            ui->vendedorLineEdit->setText(query2.value(10).toString());
+            ui->cuentaEnElCatalogoLineEdit->setText(query2.value(11).toString());
 
         }
         db.close();
@@ -290,7 +352,7 @@ void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
 void Proveedores::on_lineEdit_textChanged(const QString &arg1)
 {
     db.open();
-    searchQuery.prepare("SELECT id_proveedor, nombre, giro, nacionalidad, telefono from providers WHERE id_proveedor LIKE '"+arg1+"%' or nombre LIKE '"+arg1+"%' or giro LIKE '"+arg1+"%' or nacionalidad LIKE '"+arg1+"%'");
+    searchQuery.prepare("SELECT id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers WHERE id_proveedor LIKE '"+arg1+"%' or nombre LIKE '"+arg1+"%' or giro LIKE '"+arg1+"%' or categoria LIKE '"+arg1+"%' or nacionalidad LIKE '"+arg1+"%'");
     searchQuery.exec();
     qDebug() << arg1;
 
