@@ -11,8 +11,8 @@ Proveedores::Proveedores(QWidget *parent) :
     ui->setupUi(this);
     //QRegExp telephone("[0-9]{1,4}\\-\\.*[0-9]{1,4}");
    // QRegExp chacters("[A-Za-z]{1,45}\\s");
-    QRegExp telephone("[0-9]{1,8}");
-    QRegExp nit("[0-9]{1,4}\\-\\.*[0-9]{1,6}\\-\\.*[0-9]{1,3}\\-\\.*[0-9]{1,1}");
+    QRegExp telephone("[0-9]{0,8}");
+    QRegExp nit("[0-9]{0,4}\\-\\.*[0-9]{0,6}\\-\\.*[0-9]{0,3}\\-\\.*[0-9]{0,1}");
 
     ui->telefonoLineEdit->setValidator(new QRegExpValidator(telephone,this));
     ui->nitLineEdit->setValidator(new QRegExpValidator(nit,this));
