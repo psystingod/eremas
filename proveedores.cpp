@@ -2,12 +2,26 @@
 #include "ui_proveedores.h"
 #include <QApplication>
 #include "new.h"
+#include <QRegExp>
 
 Proveedores::Proveedores(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Proveedores)
 {
     ui->setupUi(this);
+    //QRegExp telephone("[0-9]{1,4}\\-\\.*[0-9]{1,4}");
+   // QRegExp chacters("[A-Za-z]{1,45}\\s");
+    QRegExp telephone("[0-9]{1,8}");
+    QRegExp nit("[0-9]{1,4}\\-\\.*[0-9]{1,6}\\-\\.*[0-9]{1,3}\\-\\.*[0-9]{1,1}");
+
+    ui->telefonoLineEdit->setValidator(new QRegExpValidator(telephone,this));
+    ui->nitLineEdit->setValidator(new QRegExpValidator(nit,this));
+    //ui->nombreDelProveedorLineEdit->setValidator(new QRegExpValidator(chacters, this));
+    //ui->direccionLineEdit->setValidator(new QRegExpValidator(chacters, this));
+    //ui->giroLineEdit->setValidator(new QRegExpValidator(chacters, this));
+    //ui->nacionalidadLineEdit->setValidator(new QRegExpValidator(chacters, this));
+    //ui->vendedorLineEdit->setValidator(new QRegExpValidator(chacters, this));
+    //ui->categoriaLineEdit->setValidator(new QRegExpValidator(chacters, this));
 
     db.setHostName("localhost");
     db.setDatabaseName("cablesat");
@@ -366,7 +380,7 @@ void Proveedores::on_tableViewProviders_clicked(const QModelIndex &index)
 void Proveedores::on_lineEdit_textChanged(const QString &arg1)
 {
     db.open();
-    searchQuery.prepare("SELECT id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers WHERE id_proveedor LIKE '"+arg1+"%' or nombre LIKE '"+arg1+"%' or giro LIKE '"+arg1+"%' or categoria LIKE '"+arg1+"%' or nacionalidad LIKE '"+arg1+"%'");
+    searchQuery.prepare("SELECT id_proveedor, nombre, giro, categoria, nacionalidad, telefono from providers WHERE id_proveedor LIKE '"+arg1+"%' or nombre LIKE '"+arg1+"%' or giro LIKE '"+arg1+"%' or categoria LIKE '"+arg1+"%' or nacionalidad LIKE '"+arg1+"%' or telefono LIKE '"+arg1+"%'");
     searchQuery.exec();
     qDebug() << arg1;
 
