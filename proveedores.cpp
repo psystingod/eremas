@@ -12,7 +12,7 @@ Proveedores::Proveedores(QWidget *parent) :
     //QRegExp telephone("[0-9]{1,4}\\-\\.*[0-9]{1,4}");
     //QRegExp chacters("[A-Za-z]+@[0-9]+");
     QRegExp telephone("[0-9]{0,8}");
-    QRegExp nit("[0-9]{0,4}-[0-9]{0,6}-[0-9]{0,3}-[0-9]{0,1}");
+    QRegExp nit("[0-9]{4}-[0-9]{6}-[0-9]{3}-[0-9]{1}");
 
     //INPUT MASK
     /*ui->telefonoLineEdit->setInputMask("9999-9999");
