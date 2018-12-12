@@ -10,9 +10,13 @@ Proveedores::Proveedores(QWidget *parent) :
 {
     ui->setupUi(this);
     //QRegExp telephone("[0-9]{1,4}\\-\\.*[0-9]{1,4}");
-   // QRegExp chacters("[A-Za-z]{1,45}\\s");
+    //QRegExp chacters("[A-Za-z]+@[0-9]+");
     QRegExp telephone("[0-9]{0,8}");
-    QRegExp nit("[0-9]{0,4}\\-\\.*[0-9]{0,6}\\-\\.*[0-9]{0,3}\\-\\.*[0-9]{0,1}");
+    QRegExp nit("[0-9]{0,4}-[0-9]{0,6}-[0-9]{0,3}-[0-9]{0,1}");
+
+    //INPUT MASK
+    /*ui->telefonoLineEdit->setInputMask("9999-9999");
+    ui->nitLineEdit->setInputMask("9999-999999-999-9");*/
 
     ui->telefonoLineEdit->setValidator(new QRegExpValidator(telephone,this));
     ui->nitLineEdit->setValidator(new QRegExpValidator(nit,this));
@@ -22,6 +26,7 @@ Proveedores::Proveedores(QWidget *parent) :
     //ui->nacionalidadLineEdit->setValidator(new QRegExpValidator(chacters, this));
     //ui->vendedorLineEdit->setValidator(new QRegExpValidator(chacters, this));
     //ui->categoriaLineEdit->setValidator(new QRegExpValidator(chacters, this));
+
 
     db.setHostName("localhost");
     db.setDatabaseName("cablesat");

@@ -7,6 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QRegExp characters("[A-Za-z]{2} [A-Za-z]+");
+    ui->name->setValidator(new QRegExpValidator(characters,this));
+    ui->nameMun->setValidator(new QRegExpValidator(characters,this));
+    ui->nameCol->setValidator(new QRegExpValidator(characters,this));
+
     db.setHostName("localhost");
     db.setDatabaseName("localidades");
     db.setUserName("root");
@@ -177,6 +183,9 @@ void MainWindow::on_btnSave_clicked()
 
 void MainWindow::on_tableViewDepartments_clicked(const QModelIndex &index)
 {
+    ui->name->setDisabled(true);
+    ui->nameCol->setDisabled(true);
+    ui->nameMun->setDisabled(true);
     ui->searchMunicipie->setEnabled(true);
     ui->btnEditMun->setDisabled(true);
     ui->btnDeleteMun->setDisabled(true);
@@ -380,6 +389,7 @@ void MainWindow::on_btnSaveMun_clicked()
 
 void MainWindow::on_tableViewMunicipie_clicked(const QModelIndex &index)
 {
+    ui->nameMun->setDisabled(true);
     ui->searchCol->setEnabled(true);
     ui->btnEdit->setDisabled(true);
     ui->btnDelete->setDisabled(true);
@@ -575,6 +585,11 @@ void MainWindow::on_btnSaveCol_clicked()
 
 void MainWindow::on_tableViewCol_clicked(const QModelIndex &index)
 {
+    ui->name->setDisabled(true);
+    ui->nameCol->setDisabled(true);
+    ui->nameMun->setDisabled(true);
+    ui->nameCol->setDisabled(true);
+    ui->nameMun->setDisabled(true);
     ui->btnEdit->setDisabled(true);
     ui->btnDelete->setDisabled(true);
 
