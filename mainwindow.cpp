@@ -8,10 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QRegExp characters("[A-Za-z]{2} [A-Za-z]+");
+    QRegExp characters("[A-Za-z_ ]+");
+    QRegExp strings("[A-Za-z0-9#_ ]+");
     ui->name->setValidator(new QRegExpValidator(characters,this));
     ui->nameMun->setValidator(new QRegExpValidator(characters,this));
-    ui->nameCol->setValidator(new QRegExpValidator(characters,this));
+    ui->nameCol->setValidator(new QRegExpValidator(strings,this));
 
     db.setHostName("localhost");
     db.setDatabaseName("localidades");
